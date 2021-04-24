@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomeIndexComponent } from '../home/home-index/home-index.component';
-import { NoticiaCreatEditComponent } from '../noticia/noticia-creat-edit/noticia-creat-edit.component';
-import { NoticiaDetailComponent } from '../noticia/noticia-detail/noticia-detail.component';
+import { HomeIndexComponent } from '../views/home-index/home-index.component';
+import { NoticiaCreatEditComponent } from '../views/noticia/noticia-creat-edit/noticia-creat-edit.component';
+import { NoticiaDetailComponent } from '../views/noticia/noticia-detail/noticia-detail.component';
 
 export const dashboardRoutes: Routes = [
 

@@ -10,9 +10,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { HomeIndexComponent } from './home/home-index/home-index.component';
-import { NoticiaCreatEditComponent } from './noticia/noticia-creat-edit/noticia-creat-edit.component';
-import { NoticiaDetailComponent } from './noticia/noticia-detail/noticia-detail.component';
+import { HomeIndexComponent } from './views/home-index/home-index.component';
+import { NoticiaCreatEditComponent } from './views/noticia/noticia-creat-edit/noticia-creat-edit.component';
+import { NoticiaDetailComponent } from './views/noticia/noticia-detail/noticia-detail.component';
 
 @NgModule({
   declarations: [
