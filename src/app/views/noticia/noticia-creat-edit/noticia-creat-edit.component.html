@@ -1,58 +1,95 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Agregar Ingreso / Egreso</h4>
-            <p class="card-description">
-              Especifique el monto y el tipo
-            </p>
-
-            <form>
-              
-              <div class="form-group">
-                <label>Descripción</label>
-                <input type="text" 
-                       class="form-control" 
-                       placeholder="Descripción"
-                       name="descripcion">
-              </div>
-
-              <div class="form-group">
-                  <label>Monto</label>
-                  <input type="number" 
-                         class="form-control" 
-                         placeholder="Monto"
-                         name="monto">
-                    <p>
-                      Debe de ser un monto positivo
-                    </p>
+<div class="container">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body" *ngIf="programas">
+        <h4 class="card-title">Registro de datos</h4>
+        
+        <form class="form-sample" [formGroup]="registerForm" (ngSubmit)="submit()" >
+          <p class="card-description"> Personal info </p>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="Nombre" formControlName="name" required/>
+                  <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                    <div *ngIf="f.name.parent">Hay caracteres especiales.</div>
+                    <div *ngIf="f.name.hasError('required')">Ingrese nombre.</div>
                 </div>
-
-              <div class="form-group">
-                  <label>Tipo</label>
-                  <br>
-                  <button type="button" class="btn btn-primary btn-block">Ingreso</button>
-                  <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+                </div>
               </div>
-
-              <hr>
-              <button type="button" class="btn btn-success mr-2">
-                <i class="fa fa-save"></i>
-                Agregar
-              </button>
-
-              <!-- 
-                <button disabled class="btn btn-success mr-2">
-                  <i class="fa fa-spin fa-sync"></i>
-                  Espere por favor...
-                </button> 
-              -->
-              
-              <button type="reset" class="btn btn-light">Cancelar</button>
-
-            </form>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Apellido</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="Apellido" formControlName="family_name"/>
+                  <div *ngIf="f.family_name.touched && f.family_name.invalid" class="alert alert-danger">
+                    <div *ngIf="f.family_name.parent">Hay caracteres especiales.</div>
+                    <div *ngIf="f.family_name.hasError('required')">Ingrese apellido.</div>
+                </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-</div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="juan@gmail.com" formControlName="email"/>
+                  <div *ngIf="f.email.touched && f.email.invalid && f.email.dirty" class="alert alert-danger">
+                    <div *ngIf="f.email.parent">Correo invalido.</div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Teléfono</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control"   placeholder="Número de teléfono"   formControlName="phone"  maxlength="10"/>
+                  <div *ngIf="f.phone.touched && f.phone.errors" class="alert alert-danger">
+                    <div *ngIf="f.phone.parent">Solo numeros y mínimo 6 caracteres.</div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Programa de interés</label>
+                <div class="col-sm-9">
+                  <select class="form-control" formControlName="programa">
+                    <option value="" disabled selected>Seleccione programa</option>
+                    <option *ngFor="let programa of programas" [value]="programa.id">{{programa.name}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Comentario</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" id="exampleTextarea1" rows="2" formControlName="comment"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
           
+          <hr>
+
+          <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success mr-2">
+            <i class="fa fa-save"></i>
+            Guardar
+          </button>
+
+          
+          <a  class="btn btn-light" [routerLink]="['/home']">Cancelar</a>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,57 @@
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Detalle</a>
+<div class="container">
+
+  <div class="row mb-3">
+    <div class="col-md-6 ">
+        <h2 class="styleT">Noticias publicadas</h2>
+    </div>
+    <div class="col-md-6 text-md-right">
+        <div class="my-auto">
+            <a class="btn-white-translucent m-2" [style.color]="!cards ? '#4C66FB' : '#B6BEC8'  " (click)="cards=!cards" data-toggle="tooltip" data-placement="top" title="Tabla"><i class="fas fa-th-list fa-2x "></i></a>
+            <a class="btn-white-translucent m-2" [style.color]="cards ? '#4C66FB' : '#B6BEC8' " (click)="cards=!cards" data-toggle="tooltip" data-placement="top" title="Cards"><i class="fas fa-th fa-2x "></i></a>
+        </div>
+    </div>
+</div>
+
+
+  <div class="row" *ngIf="!cards">
+      <div class="col-dm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titulo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let noticia of noticias">
+              <th scope="row">{{noticia.id}}</th>
+              <td>{{noticia.title}}</td>
+
+              <td><a  [routerLink]="['/noticias', noticia.id]"  class="btn btn-primary text-white" data-toggle="buttons">Detalle</a></td>
+            
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+  </div>
+
+  <div class="row list" *ngIf="cards">
+    <div class="col-lg-4 col-md-6 " *ngFor="let noticia of noticias" >
+      <div class="card mb-4 border border-primary" style="width: 18rem;">
+        <!--<img src="..." class="card-img-top" alt="...">-->
+        <div class="card-body">
+          <h5 class="card-title">{{(noticia.title|slice:0:30)+'...'}}</h5>
+          <p class="card-text">{{(noticia.body|slice:0:200)+'...'}}</p>
+          <a  (click)="verDetalleNoticia(noticia.id)"  class="btn btn-primary text-white" data-toggle="buttons">Detalle</a>
+        </div>
+      </div>
     </div>
   </div>
+    
+</div>
+
+
+
+
+  

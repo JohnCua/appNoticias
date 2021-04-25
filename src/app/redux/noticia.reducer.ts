@@ -18,6 +18,7 @@ const _noticiaReducer = createReducer(
 
     on( unSetItems, state  => ({ ...state, items: []})),
 
+
 );
 
 export function noticiaReducer(state:any, action:any) {

@@ -6,7 +6,7 @@ import { NoticiaDetailComponent } from '../views/noticia/noticia-detail/noticia-
 export const dashboardRoutes: Routes = [
 
     { path: 'home', component: HomeIndexComponent },
-    { path: 'detalle', component: NoticiaDetailComponent },
+    { path: 'noticias/:id', component: NoticiaDetailComponent },
     { path: 'registro', component: NoticiaCreatEditComponent },
     { path: '**', redirectTo: 'home' }
 

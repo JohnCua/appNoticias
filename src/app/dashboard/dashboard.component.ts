@@ -3,8 +3,10 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import { AppState } from '../app.reducer';
-import { NoticiaService } from '../services/api/noticia.service';
+
 import * as noticiasActions from '../redux/noticia.actions';
+import { NoticiaService } from '../services/noticia.service';
+import { Noticia } from '../models/noticia.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,26 +14,22 @@ import * as noticiasActions from '../redux/noticia.actions';
   styles: [
   ]
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
 
- 
+  private subscriptioions = new Subscription();
 
   constructor( private store: Store<AppState>,
                private noticiaService:NoticiaService) { }
 
   ngOnInit(): void {
-
-    this.noticiaService.getDataNoticias().subscribe( noticias => {
-
-      console.log(noticias);
-        //this.store.dispatch(noticiasActions.setItems({items: noticias}))
+    this.subscriptioions = this.noticiaService.getDataNoticias().subscribe( (noticias) => {
+        this.store.dispatch(noticiasActions.setItems({items: noticias}));
       }
     );
-
   }
 
   ngOnDestroy() {
-    
+    this.subscriptioions.unsubscribe();
   }
 
 }
